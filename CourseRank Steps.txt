@@ -1,0 +1,21 @@
+CourseRank Steps:
+
+Step 1
+- Display at least 1 undergraduate major (Computer Science)
+- Display the classes offered for that major (Found in the flowchart)
+- Display the professors who teach the classes 
+- Create a rating system for the classes and average the total of the response. 
+
+Step 2
+- Create a user login
+- Add a comment section
+- Add a date the comment and the user rating was done
+- Add graduate classes as well in majors
+- Search classes by a subject by adding a subjects table in Supabase (such as: Math, Literature, Science)
+
+Step 3
+- Add professors so they can be rated individually inculde the class they teach. 
+- Allow students to setup and save their schedule for the following semester
+
+Step 4
+- Use AI to generate classes for the students depending the difficulty they want

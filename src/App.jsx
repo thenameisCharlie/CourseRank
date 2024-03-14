@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { supabase } from "./client";
+import CourseList from "./components/CourseList";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <div></div>;
+  return (
+    <div>
+      <h1>Course List</h1>
+      <CourseList />
+    </div>
+  );
 }
 
 export default App;
