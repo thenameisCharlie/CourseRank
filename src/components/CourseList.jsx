@@ -1,23 +1,53 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { supabase } from "../client";
 
-const CourseList = () => {
+const CourseList = ({ selectedMajor }) => {
   const [courses, setCourses] = useState([]);
+  const [selectedCourse, setSelectedCourse] = useState(" ");
 
-  const fetchCourses = async () => {
-    const { data, error } = await supabase.from("courses").select("*");
-    if (error) console.log("error", error);
-    else setCourses(data);
-    console.log(data);
+  useEffect(() => {
+    const fetchCourses = async () => {
+      // If a major is selected, fetch courses for that major
+      if (selectedMajor) {
+        const { data, error } = await supabase
+          .from("courses")
+          .select("*")
+          .eq("major_id", selectedMajor);
+      }
+
+      if (error) console.log("error", error);
+      else setCourses(data);
+    };
+
+    if (selectedMajor) {
+      fetchCourses();
+    } else {
+      setCourses([]);
+    }
+  }, [selectedMajor]);
+
+  const handleCourseChange = (event) => {
+    setSelectedCourse(event.target.value);
   };
 
   return (
     <div>
-      <button onClick={fetchCourses}>Fetch Courses</button>
-      {courses.map((course) => (
-        <p key={course.id}>{course.title}</p>
-      ))}
+      <label htmlFor="course-select">Choose a course:</label>
+      <select
+        id="course-select"
+        value={selectedCourse}
+        onChange={handleCourseChange}
+        disabled={!selectedMajor}
+      >
+        <option value="">Select a course</option>
+        {courses.map((course) => (
+          <option key={course.id} value={course.id}>
+            {course.title}
+          </option>
+        ))}
+      </select>
+      {selectedCourse && <div>You have selected: {selectedCourse}</div>}
     </div>
   );
 };

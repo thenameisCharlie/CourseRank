@@ -3,8 +3,9 @@ CourseRank Steps:
 Step 1
 - Display at least 1 undergraduate major (Computer Science)
 - Display the classes offered for that major (Found in the flowchart)
-- Display the professors who teach the classes 
+- Display the professors who teach the classes (Once you search the class)
 - Create a rating system for the classes and average the total of the response. 
+- Create a Navbar
 
 Step 2
 - Create a user login
