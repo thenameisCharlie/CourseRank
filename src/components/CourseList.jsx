@@ -8,14 +8,14 @@ const CourseList = ({ selectedMajor }) => {
 
   useEffect(() => {
     const fetchCourses = async () => {
-      // If a major is selected, fetch courses for that major
+      let query = supabase.from("courses").select("*");
+
+      // If a major is selected, add a filter to the query
       if (selectedMajor) {
-        const { data, error } = await supabase
-          .from("courses")
-          .select("*")
-          .eq("major_id", selectedMajor);
+        query = query.eq("major_id", selectedMajor);
       }
 
+      const { data, error } = await query;
       if (error) console.log("error", error);
       else setCourses(data);
     };
