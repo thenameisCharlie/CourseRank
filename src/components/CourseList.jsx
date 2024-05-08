@@ -47,7 +47,6 @@ const CourseList = ({ selectedMajor }) => {
           </option>
         ))}
       </select>
-      {selectedCourse && <div>You have selected: {selectedCourse}</div>}
     </div>
   );
 };
