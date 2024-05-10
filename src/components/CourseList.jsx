@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { supabase } from "../client";
 
-const CourseList = ({ selectedMajor }) => {
+const CourseList = ({ selectedMajor, onCourseChange }) => {
   const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState(" ");
 
@@ -29,6 +29,7 @@ const CourseList = ({ selectedMajor }) => {
 
   const handleCourseChange = (event) => {
     setSelectedCourse(event.target.value);
+    onCourseChange(event.target.value);
   };
 
   return (
