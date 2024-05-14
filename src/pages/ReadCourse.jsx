@@ -52,6 +52,11 @@ const ReadCourse = () => {
     return (total / ratings.length).toFixed(0);
   };
 
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   return (
     <div>
       <Navbar />
@@ -64,12 +69,19 @@ const ReadCourse = () => {
         ))}
       </div>
       <div className="course-ratings">
-        <h3>Course Ratings</h3>
+        <h2>Course Ratings</h2>
         <ul className="ratings-list">
           {rating.length > 0 ? (
             <>
-              <li>Average rating: {getAverageRating(rating)}</li>
-              <li>Course difficulty: {getAverageDifficulty(rating)}</li>
+              <h3 className="course-rating">
+                Average rating: {getAverageRating(rating)}
+              </h3>
+              <h3 className="course-difficulty">
+                Course difficulty: {getAverageDifficulty(rating)}
+              </h3>
+              {rating.map((rating) => (
+                <li key={rating.id}>Date: {formatDate(rating.created_at)}</li>
+              ))}
             </>
           ) : (
             <li>No ratings yet</li>
