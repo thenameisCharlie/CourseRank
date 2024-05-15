@@ -79,7 +79,7 @@ const ReadCourse = () => {
           {rating.length > 0 ? (
             <>
               <h3 className="course-rating">
-                Average rating: {getAverageRating(rating)}
+                Average rating: {getAverageRating(rating)}⭐
               </h3>
               <h3 className="course-difficulty">
                 Course difficulty: {getAverageDifficulty(rating)}
