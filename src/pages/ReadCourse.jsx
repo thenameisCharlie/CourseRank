@@ -8,6 +8,7 @@ const ReadCourse = () => {
   const [course, setCourse] = useState([]);
   const [rating, setRating] = useState([]);
 
+  //fetch the course data from the database
   useEffect(() => {
     const fetchCourseData = async () => {
       const { data, error } = await supabase
@@ -21,6 +22,7 @@ const ReadCourse = () => {
     fetchCourseData();
   }, [id]);
 
+  //fetch the ratings of the course from the database
   useEffect(() => {
     const fetchRatingData = async () => {
       const { data, error } = await supabase
@@ -34,6 +36,7 @@ const ReadCourse = () => {
     fetchRatingData();
   }, [id]);
 
+  //get the average rating of the course of all users
   const getAverageRating = (ratings) => {
     if (ratings.length === 0) {
       return 0;
@@ -43,6 +46,7 @@ const ReadCourse = () => {
     return (total / ratings.length).toFixed(1); //toFixed(1) rounds the number to 1 decimal place.
   };
 
+  //get the difficulty average rating from all users
   const getAverageDifficulty = (ratings) => {
     if (rating === 0) {
       return 0;
@@ -52,9 +56,10 @@ const ReadCourse = () => {
     return (total / ratings.length).toFixed(0);
   };
 
+  //format the date to a more readable format for users.
   const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    return new Date(dateString).toLocaleDateString(undefined, options);
+    const options = { year: "numeric", month: "long", day: "numeric" }; //options for the date format
+    return new Date(dateString).toLocaleDateString(undefined, options); //toLocaleDateString() returns a string with a language sensitive representation of the date portion of this date.
   };
 
   return (
@@ -80,7 +85,11 @@ const ReadCourse = () => {
                 Course difficulty: {getAverageDifficulty(rating)}
               </h3>
               {rating.map((rating) => (
-                <li key={rating.id}>Date: {formatDate(rating.created_at)}</li>
+                <li key={rating.id}>
+                  Comments: {rating.comment}
+                  <br />
+                  {formatDate(rating.created_at)}
+                </li>
               ))}
             </>
           ) : (
