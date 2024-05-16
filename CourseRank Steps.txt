@@ -3,18 +3,16 @@ CourseRank Steps:
 Step 1
 - Display at least 1 undergraduate major (Computer Science) in the main page - Complete
 - Display the classes offered for that major (Found in the flowchart) in the main page - Complete
-- Create a Navbar
-- Create a CoursesList.jsx to link with the navbar (This will display a list of all the courses that have been rated thus far). 
-- Create a view course page where students can view the course rank rating and the comments
-- Create a rating system for the classes and average the total of the response in the view course page
+- Create a Navbar - Complete 
+- Create a rating system for the classes and average the total of the response in the view course page - Complete
+- Add a comment section - Complete
+- Add a date the comment and the user rating was done - Complete
 
 
 Step 2
 - Create a user login
-- Add a comment section
-- Add a date the comment and the user rating was done
-- Add graduate classes as well in majors
-- Search classes by a subject by adding a subjects table in Supabase (such as: Math, Literature, Science)
+- Add the professors who teach the courses as a hyperlink 
+
 
 Step 3
 - Add professors so they can be rated individually include the class they teach. 
@@ -23,3 +21,5 @@ Step 3
 
 Step 4
 - Use AI to generate classes for the students depending the difficulty they want
+- Add graduate classes as well in majors
+- Search classes by a subject by adding a subjects table in Supabase (such as: Math, Literature, Science) - Maybe 
