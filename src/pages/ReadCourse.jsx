@@ -56,6 +56,20 @@ const ReadCourse = () => {
     return (total / ratings.length).toFixed(0);
   };
 
+  // const countRatings = (ratings) => {
+  //   return ratings.reduce((acc, curr) => {
+  //     acc[curr.rating_value] = (acc[curr.rating_value] || 0) + 1;
+  //     return acc;
+  //   }, {});
+  // };
+
+  const countRatings = (ratings) => {
+    ratings.forEach((acc, curr) => {
+      acc = acc + curr.rating_value;
+      return acc;
+    });
+  };
+
   //format the date to a more readable format for users.
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" }; //options for the date format
@@ -84,11 +98,16 @@ const ReadCourse = () => {
               <h3 className="course-difficulty">
                 Course difficulty: {getAverageDifficulty(rating)}
               </h3>
+              <h4 className="course-comments">Comments</h4>
               {rating.map((rating) => (
                 <li key={rating.id}>
-                  Comments: {rating.comment}
+                  Rating:{rating.rating_value}
+                  <br />
+                  {rating.comment}
                   <br />
                   {formatDate(rating.created_at)}
+                  <br />
+                  <br />
                 </li>
               ))}
             </>
