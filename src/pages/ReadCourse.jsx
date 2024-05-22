@@ -56,19 +56,15 @@ const ReadCourse = () => {
     return (total / ratings.length).toFixed(0);
   };
 
-  // const countRatings = (ratings) => {
-  //   return ratings.reduce((acc, curr) => {
-  //     acc[curr.rating_value] = (acc[curr.rating_value] || 0) + 1;
-  //     return acc;
-  //   }, {});
-  // };
-
+  //count the number of ratings for each rating value
   const countRatings = (ratings) => {
-    ratings.forEach((acc, curr) => {
-      acc = acc + curr.rating_value;
+    return ratings.reduce((acc, curr) => {
+      acc[curr.rating_value] = (acc[curr.rating_value] || 0) + 1; // if the rating value is not in the accumulator, add it to the accumulator and set it to 1. If it is in the accumulator, increment it by 1.
       return acc;
-    });
+    }, {});
   };
+
+  console.log(countRatings(rating));
 
   //format the date to a more readable format for users.
   const formatDate = (dateString) => {
@@ -114,6 +110,16 @@ const ReadCourse = () => {
           ) : (
             <li>No ratings yet</li>
           )}
+        </ul>
+      </div>
+      <div>
+        <ul className="counted-ratings">
+          <li>5 ⭐: {countRatings(rating)["5"] || 0}</li>{" "}
+          {/* We use bracket notation to access a property that is numeric*/}
+          <li>4 ⭐: {countRatings(rating)["4"] || 0}</li>
+          <li>3 ⭐: {countRatings(rating)["3"] || 0}</li>
+          <li>2 ⭐: {countRatings(rating)["2"] || 0}</li>
+          <li>1 ⭐: {countRatings(rating)["1"] || 0}</li>
         </ul>
       </div>
     </div>

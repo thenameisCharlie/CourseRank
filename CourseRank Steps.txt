@@ -7,17 +7,19 @@ Step 1
 - Create a rating system for the classes and average the total of the response in the view course page - Complete
 - Add a comment section - Complete
 - Add a date the comment and the user rating was done - Complete
-
+- Add the ratings in the comments - Complete
 
 Step 2
 - Create a user login
 - Add the professors who teach the courses as a hyperlink 
+- filter the comments by ratings
 
 
 Step 3
 - Add professors so they can be rated individually include the class they teach. 
 - Allow students to setup and save their schedule for the following semester
 - Display the professors who teach the classes (Once you search the class)
+
 
 Step 4
 - Use AI to generate classes for the students depending the difficulty they want
