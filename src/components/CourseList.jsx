@@ -27,6 +27,7 @@ const CourseList = ({ selectedMajor, onCourseChange }) => {
     }
   }, [selectedMajor]);
 
+  // Handle the course change event
   const handleCourseChange = (event) => {
     setSelectedCourse(event.target.value);
     onCourseChange(event.target.value);
@@ -36,6 +37,7 @@ const CourseList = ({ selectedMajor, onCourseChange }) => {
     <div>
       <label htmlFor="course-select">Choose a course:</label>
       <select
+        size="8"
         id="course-select"
         value={selectedCourse}
         onChange={handleCourseChange}

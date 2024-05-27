@@ -13,6 +13,7 @@ Step 2
 - Create a user login
 - Add the professors who teach the courses as a hyperlink 
 - filter the comments by ratings
+- Make the dropdown list display in alphabetical order
 
 
 Step 3
