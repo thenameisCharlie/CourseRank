@@ -10,14 +10,17 @@ function App() {
   const [selectedCourseId, setSelectedCourseId] = useState(null);
   const navigate = useNavigate();
 
+  //set the selected major id
   const handleMajorChange = (majorId) => {
     setSelectedMajor(majorId);
   };
 
+  //set the selected course id
   const handleCourseChange = (courseId) => {
     setSelectedCourseId(courseId);
   };
 
+  //navigate to the view page of the selected course
   const handleNavigate = () => {
     if (selectedCourseId) {
       navigate(`/view/${selectedCourseId}`);

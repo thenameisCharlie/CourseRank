@@ -13,6 +13,9 @@ const MajorList = ({ onMajorChange }) => {
     fetchMajor();
   }, []);
 
+  // Sort majors in alphabetical order
+  major.sort((a, b) => a.name.localeCompare(b.name));
+
   return (
     <div>
       <label htmlFor="major-select">Choose a Major:</label>

@@ -27,10 +27,14 @@ const CourseList = ({ selectedMajor, onCourseChange }) => {
     }
   }, [selectedMajor]);
 
+  // Handle the course change event
   const handleCourseChange = (event) => {
     setSelectedCourse(event.target.value);
     onCourseChange(event.target.value);
   };
+
+  //Sort courses in alphabetical order
+  courses.sort((a, b) => a.title.localeCompare(b.title)); //These two functions together sort the courses in alphabetical order.
 
   return (
     <div>
