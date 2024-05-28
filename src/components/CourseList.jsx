@@ -40,6 +40,7 @@ const CourseList = ({ selectedMajor, onCourseChange }) => {
     <div>
       <label htmlFor="course-select">Choose a course:</label>
       <select
+        size="8"
         id="course-select"
         value={selectedCourse}
         onChange={handleCourseChange}
