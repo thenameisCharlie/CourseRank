@@ -69,8 +69,6 @@ const ReadCourse = () => {
     }, {});
   };
 
-  console.log(countRatings(rating));
-
   //format the date to a more readable format for users.
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" }; //options for the date format
@@ -78,7 +76,7 @@ const ReadCourse = () => {
   };
 
   //sorts the comments by date, highest rating, or lowest rating by comparing the highest rating to the lowest rating.
-  const sortReviews = (reviews, criterion = "date") => {
+  const sortReviews = (reviews, criterion) => {
     return reviews.sort((a, b) => {
       if (criterion === "lowest") {
         return a.rating_value - b.rating_value;
@@ -121,8 +119,12 @@ const ReadCourse = () => {
                 Course difficulty: {getAverageDifficulty(rating)}
               </h3>
               <h4 className="course-comments">Comments</h4>
-              <select onChange={handleSort}>
-                <option value="date">Sort by date</option>
+              <select
+                id="sort-dropdown"
+                value={sortCriterion}
+                onChange={handleSort}
+              >
+                <option value="date">Recent</option>
                 <option value="highest">Sort by highest rating</option>
                 <option value="lowest">Sort by lowest rating</option>
               </select>

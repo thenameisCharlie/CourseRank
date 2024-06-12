@@ -6,13 +6,15 @@ const CourseList = ({ selectedMajor, onCourseChange }) => {
   const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState(" ");
 
+  //useEffect is a hook that runs after the first render and after every update.
+  // Fetch courses from the database
   useEffect(() => {
     const fetchCourses = async () => {
       let query = supabase.from("courses").select("*");
 
       // If a major is selected, add a filter to the query
       if (selectedMajor) {
-        query = query.eq("major_id", selectedMajor);
+        query = query.eq("major_id", selectedMajor); //eq is a filter that ensures that the major_id in database is equal to the selectedMajor.
       }
 
       const { data, error } = await query;

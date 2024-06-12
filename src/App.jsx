@@ -8,7 +8,7 @@ import "./App.css";
 function App() {
   const [selectedMajor, setSelectedMajor] = useState(null);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); //useNavigate is a hook that allows you to navigate to a different page in your application.
 
   //set the selected major id
   const handleMajorChange = (majorId) => {

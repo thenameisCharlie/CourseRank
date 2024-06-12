@@ -4,6 +4,7 @@ import { supabase } from "../client";
 const MajorList = ({ onMajorChange }) => {
   const [major, setMajor] = useState([]);
 
+  // Fetch majors from the database
   useEffect(() => {
     const fetchMajor = async () => {
       const { data, error } = await supabase.from("school majors ").select("*");
