@@ -8,7 +8,7 @@ const ReadCourse = () => {
   const [course, setCourse] = useState([]);
   const [rating, setRating] = useState([]);
   const [sortRatings, setSortRatings] = useState([]); //sortReviews can be ["date", "highest", "lowest"
-  const [sortCriteria, setSortCriteria] = useState("date"); //criteria can be ["rating", "difficulty", "date"
+  const [sortCriterion, setSortCriterion] = useState("date"); //criteria can be ["rating", "difficulty", "date"
   // const [professor, setProfessor] = useState([]);
 
   //fetch the course data from the database
@@ -77,14 +77,14 @@ const ReadCourse = () => {
     return new Date(dateString).toLocaleDateString(undefined, options); //toLocaleDateString() returns a string with a language sensitive representation of the date portion of this date.
   };
 
-  //sort the comments by date, highest rating, or lowest rating
-  const sortReviews = (reviews, criteria = "date") => {
+  //sorts the comments by date, highest rating, or lowest rating by comparing the highest rating to the lowest rating.
+  const sortReviews = (reviews, criterion = "date") => {
     return reviews.sort((a, b) => {
-      if (criteria === "lowest") {
+      if (criterion === "lowest") {
         return a.rating_value - b.rating_value;
-      } else if (criteria === "highest") {
+      } else if (criterion === "highest") {
         return b.rating_value - a.rating_value;
-      } else if (criteria === "date") {
+      } else if (criterion === "date") {
         return new Date(b.created_at) - new Date(a.created_at);
       } else {
         return 0;
@@ -92,8 +92,9 @@ const ReadCourse = () => {
     });
   };
 
+  //handle the event when the user selects a sorting criterion
   const handleSort = (e) => {
-    setSortCriteria(e.target.value);
+    setSortCriterion(e.target.value);
     setSortRatings(sortReviews(rating, e.target.value));
   };
 
@@ -120,6 +121,12 @@ const ReadCourse = () => {
                 Course difficulty: {getAverageDifficulty(rating)}
               </h3>
               <h4 className="course-comments">Comments</h4>
+              <select onChange={handleSort}>
+                <option value="date">Sort by date</option>
+                <option value="highest">Sort by highest rating</option>
+                <option value="lowest">Sort by lowest rating</option>
+              </select>
+              <br />
               {rating.map((rating) => (
                 <li key={rating.id}>
                   Rating:{rating.rating_value}
