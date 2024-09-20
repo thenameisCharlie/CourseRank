@@ -148,7 +148,7 @@ const ReadCourse = () => {
       </div>
       <div>
         <ul className="counted-ratings">
-          <li>5 ⭐: {countRatings(rating)["54"] || 0}</li>{" "}
+          <li>5 ⭐: {countRatings(rating)["5"] || 0}</li>{" "}
           {/* We use bracket notation to access a property that is numeric*/}
           <li>4 ⭐: {countRatings(rating)["4"] || 0}</li>
           <li>3 ⭐: {countRatings(rating)["3"] || 0}</li>
