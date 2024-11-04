@@ -38,11 +38,18 @@ const Navbar = () => {
           <li>
             {userData ? (
               <>
-                <Link to="">
-                  <button className="headerBtn" onClick={handleSignout}>
-                    Sign Out
+                <Link to="/">
+                  <button className="headerBtn">
+                    {userData.user_metadata.display_name}
                   </button>
                 </Link>
+                <li>
+                  <Link to="/">
+                    <button className="headerBtn" onClick={handleSignout}>
+                      Sign Out
+                    </button>
+                  </Link>
+                </li>
               </>
             ) : (
               <>
