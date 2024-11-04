@@ -49,7 +49,6 @@ function SignIn() {
     <div>
       <form onSubmit={handleSignIn}>
         <div>
-          <label htmlFor="email">Email</label>
           <input
             id="email"
             type="email"
@@ -60,7 +59,6 @@ function SignIn() {
           />
         </div>
         <div>
-          <label htmlFor="password">Password</label>
           <input
             id="password"
             type="password"

@@ -19,7 +19,9 @@ const Navbar = () => {
       if (error) {
         console.error("Error fetching user:", error.message);
         handleSignout();
-      } else if (user) setUserData(user);
+      } else if (user) {
+        setUserData(user);
+      }
     };
 
     fetchUser();
@@ -31,7 +33,6 @@ const Navbar = () => {
         <ul>
           <li>
             <Link to="/">
-              {" "}
               <button className="headerBtn">Home</button>
             </Link>
           </li>
@@ -43,6 +44,13 @@ const Navbar = () => {
                     {userData.user_metadata.display_name}
                   </button>
                 </Link>
+                <div className="profile-container">
+                  <img
+                    src={`https://thfdcazcceydntzmyaip.supabase.co/storage/v1/object/public/profile-pictures/${userData.user_metadata.profile_image_url}`}
+                    alt="Profile"
+                    className="profile-picture"
+                  />
+                </div>
                 <li>
                   <Link to="/">
                     <button className="headerBtn" onClick={handleSignout}>
@@ -52,11 +60,9 @@ const Navbar = () => {
                 </li>
               </>
             ) : (
-              <>
-                <Link to="/signin">
-                  <button className="headerBtn"> Sign In </button>
-                </Link>
-              </>
+              <Link to="/signin">
+                <button className="headerBtn">Sign In</button>
+              </Link>
             )}
           </li>
         </ul>

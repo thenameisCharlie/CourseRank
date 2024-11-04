@@ -7,22 +7,46 @@ function SignUp() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState("");
+  const [university, setUniversity] = useState("");
   const [userData, setUserData] = useState(null);
+  const [profileImage, setProfileImage] = useState(null);
 
   useEffect(() => {
     // If user is already logged in, redirect to main page
     fetchUserData();
-  });
+  }, []);
 
   const fetchUserData = async () => {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    setUserData(user.id);
+    setUserData(user?.id); // in case we may need the user ID
 
-    if (userData) {
+    if (user) {
       window.location.href = "/";
     }
+  };
+
+  const handleImageUpload = async (file) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = async () => {
+        if (img.width === 400 && img.height === 400) {
+          // Proceed with upload
+          const fileName = `public/pfp-${file.name}-${Date.now()}.jpg`;
+          const { data, error } = await supabase.storage
+            .from("profile-pictures")
+            .upload(fileName, file);
+
+          if (error) reject(error);
+          else resolve(data.path); // Return file path
+        } else {
+          reject(new Error("Profile image must be 400x400 pixels."));
+        }
+      };
+      img.onerror = () => reject(new Error("Invalid image file."));
+      img.src = URL.createObjectURL(file);
+    });
   };
 
   const handleSignUp = async (e) => {
@@ -30,21 +54,32 @@ function SignUp() {
     setLoading(true);
     setError("");
 
-    const { error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-      options: {
-        data: {
-          display_name: username,
-        },
-      },
-    });
+    try {
+      const imagePath = profileImage
+        ? await handleImageUpload(profileImage)
+        : null;
 
-    if (error) {
-      console.error("Error signing up:", error.message);
-      setError(error.message);
-    } else {
-      window.location.href = "/";
+      const { error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: {
+            display_name: username,
+            university: university,
+            profile_image_url: imagePath,
+          },
+        },
+      });
+
+      if (error) {
+        console.error("Error signing up:", error.message);
+        setError(error.message);
+      } else {
+        window.location.href = "/";
+      }
+    } catch (uploadError) {
+      console.error("Image upload error:", uploadError.message);
+      setError(uploadError.message);
     }
 
     setLoading(false);
@@ -54,18 +89,29 @@ function SignUp() {
     <div>
       <form onSubmit={handleSignUp}>
         <div>
-          <label htmlFor="Username">Username</label>
           <input
-            id="username"
-            type="username"
-            placeholder="Username"
+            id="name"
+            type="text"
+            placeholder="Name"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
         <div>
-          <label htmlFor="email">Email</label>
+          <select
+            id="university"
+            value={university}
+            onChange={(e) => setUniversity(e.target.value)}
+            required
+          >
+            <option value="">Select University</option>
+            <option value="Florida Atlantic University">
+              Florida Atlantic University
+            </option>
+          </select>
+        </div>
+        <div>
           <input
             id="email"
             type="email"
@@ -76,7 +122,6 @@ function SignUp() {
           />
         </div>
         <div>
-          <label htmlFor="password">Password</label>
           <input
             id="password"
             type="password"
@@ -84,6 +129,14 @@ function SignUp() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+          />
+        </div>
+        <div>
+          <input
+            id="profileImage"
+            type="file"
+            accept="image/png, image/jpeg"
+            onChange={(e) => setProfileImage(e.target.files[0])}
           />
         </div>
         <button type="submit" disabled={loading}>
