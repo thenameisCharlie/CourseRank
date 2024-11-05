@@ -10,7 +10,7 @@ Step 1
 - Add the ratings in the comments - Complete
 
 Step 2
-- Create a user login - 
+- Create a user login - Complete
 - filter the comments by ratings - Complete
 - Make the dropdown list display in alphabetical order - Complete
 
