@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../client";
+import "../styles/SignUp.css";
+import Navbar from "../components/Navbar";
 
 function SignUp() {
   const [email, setEmail] = useState("");
@@ -86,65 +88,74 @@ function SignUp() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSignUp}>
-        <div>
-          <input
-            id="name"
-            type="text"
-            placeholder="Name"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <select
-            id="university"
-            value={university}
-            onChange={(e) => setUniversity(e.target.value)}
-            required
-          >
-            <option value="">Select University</option>
-            <option value="Florida Atlantic University">
-              Florida Atlantic University
-            </option>
-          </select>
-        </div>
-        <div>
-          <input
-            id="email"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <input
-            id="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <input
-            id="profileImage"
-            type="file"
-            accept="image/png, image/jpeg"
-            onChange={(e) => setProfileImage(e.target.files[0])}
-          />
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading ? "Signing up..." : "Sign up"}
-        </button>
-      </form>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-    </div>
+    <>
+      <Navbar />
+      <div className="signup-container">
+        <form onSubmit={handleSignUp}>
+          <div>
+            <h1 className="title-name">Sign Up</h1>
+            <input
+              id="name"
+              className="input-border"
+              type="text"
+              placeholder="Name"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <select
+              id="university"
+              className="input-border"
+              value={university}
+              onChange={(e) => setUniversity(e.target.value)}
+              required
+            >
+              <option value="">Select University</option>
+              <option value="Florida Atlantic University">
+                Florida Atlantic University
+              </option>
+            </select>
+          </div>
+          <div>
+            <input
+              id="email"
+              className="input-border"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <input
+              id="password"
+              className="input-border"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <input
+              id="profileImage"
+              className="file-input-border"
+              type="file"
+              accept="image/png, image/jpeg"
+              onChange={(e) => setProfileImage(e.target.files[0])}
+            />
+          </div>
+          <button type="submit" disabled={loading}>
+            {loading ? "Signing up..." : "Sign up"}
+          </button>
+        </form>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+      </div>{" "}
+    </>
   );
 }
 

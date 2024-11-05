@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../client";
+import "../styles/MajorList.css";
 
 const MajorList = ({ onMajorChange }) => {
   const [major, setMajor] = useState([]);
@@ -19,9 +20,8 @@ const MajorList = ({ onMajorChange }) => {
 
   return (
     <div>
-      <label htmlFor="major-select">Choose a Major:</label>
       <select id="major-select" onChange={(e) => onMajorChange(e.target.value)}>
-        <option value="">Select a Major</option>
+        <option value="">Your major</option>
         {major.map((majorItem) => (
           <option key={majorItem.id} value={majorItem.id}>
             {majorItem.name}
