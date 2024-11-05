@@ -13,6 +13,7 @@ Step 2
 - Create a user login - Complete
 - filter the comments by ratings - Complete
 - Make the dropdown list display in alphabetical order - Complete
+- Create a rate page where you can rate courses or professors
 
 
 Step 3
