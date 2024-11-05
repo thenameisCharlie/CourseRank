@@ -36,6 +36,14 @@ const ReadCourse = () => {
         .eq("course_id", id);
       if (error) console.log("error", error);
       else setRating(data);
+
+      // TODO: Update the rating bars based on the fetched ratings data
+      // use to update rating bars (currently has dummy values in the css)
+      // document.getElementById("outer-five").style.gridTemplateColumns =`${event.target.value}fr ${event.target.max-event.target.value}fr`;
+      // document.getElementById("outer-four").style.gridTemplateColumns =`${event.target.value}fr ${event.target.max-event.target.value}fr`;
+      // document.getElementById("outer-three").style.gridTemplateColumns =`${event.target.value}fr ${event.target.max-event.target.value}fr`;
+      // document.getElementById("outer-two").style.gridTemplateColumns =`${event.target.value}fr ${event.target.max-event.target.value}fr`;
+      // document.getElementById("outer-one").style.gridTemplateColumns =`${event.target.value}fr ${event.target.max-event.target.value}fr`;
     };
 
     fetchRatingData();
@@ -163,20 +171,35 @@ const ReadCourse = () => {
           ))}
         </div>
         <div class="rating-breakdown">
-          <span>5</span>
-          <div className="bar fill-green"></div>
+          <span>5 ⭐</span>
+          <div id="outer-five">
+            <div></div>
+            <div></div>
+          </div>
           <span>18</span>
-          <span>4</span>
-          <div className="bar fill-green"></div>
+          <span>4 ⭐</span>
+          <div id="outer-four">
+            <div></div>
+            <div></div>
+          </div>
           <span>3</span>
+          <span>3 ⭐</span>
+          <div id="outer-three">
+            <div></div>
+            <div></div>
+          </div>
           <span>3</span>
-          <div className="bar fill-yellow"></div>
-          <span>3</span>
-          <span>2</span>
-          <div className="bar fill-yellow"></div>
-          <span>0</span>
-          <span>1</span>
-          <div className="bar fill-red"></div>
+          <span>2 ⭐</span>
+          <div id="outer-two">
+            <div></div>
+            <div></div>
+          </div>
+          <span>9</span>
+          <span>1 ⭐</span>
+          <div id="outer-one">
+            <div></div>
+            <div></div>
+          </div>
           <span>4</span>
         </div>
       </div>
