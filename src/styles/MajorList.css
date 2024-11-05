@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'LexendExa';
+    src: url('../assets/font/LexendExa-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+select {
+    min-width: 500px;
+    max-width: 500px;
+    height: 50px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid black;
+    border-radius: 50px;
+    box-sizing: border-box;
+    font-family: 'LexendExa', sans-serif;
+    background-color: #E4E4E4;
+    color: #878787;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="%23878787" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+}

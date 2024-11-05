@@ -39,15 +39,14 @@ const CourseList = ({ selectedMajor, onCourseChange }) => {
   courses.sort((a, b) => a.title.localeCompare(b.title)); //These two functions together sort the courses in alphabetical order.
 
   return (
-    <div>
-      <label htmlFor="course-select">Choose a course:</label>
+    <div className="course-list">
       <select
         id="course-select"
         value={selectedCourse}
         onChange={handleCourseChange}
         disabled={!selectedMajor}
       >
-        <option value="">Select a course</option>
+        <option value="">Your course</option>
         {courses.map((course) => (
           <option key={course.id} value={course.id}>
             {course.title}

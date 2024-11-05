@@ -8,7 +8,7 @@
 .title-name {
     font-family: 'LexendExa', sans-serif;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 60px;
     color: #333333;
 }
 
@@ -16,7 +16,6 @@
     color: #D4A017;
 }
 
-.title-name,
 .highlight {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
@@ -28,4 +27,30 @@
 
 img {
     border-radius: 50%;
+}
+
+.app-container {
+    margin-top: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 25vh;
+}
+
+.search-button {
+    margin-top: 40px;
+    background-color: #0055FD;
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+    padding: 10px 40px;
+    font-family: 'LexendExa', sans-serif;
+    border-color: black;
+}
+
+.subtitle-text {
+    font-family: 'LexendExa', sans-serif;
+    font-size: 25px;
+    color: #333333;
 }

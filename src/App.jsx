@@ -32,15 +32,20 @@ function App() {
   return (
     <div>
       <Navbar />
-      <h1 className="title-name">
-        Course<span className="highlight">Rank</span>
-      </h1>
-      <MajorList onMajorChange={handleMajorChange} />
-      <CourseList
-        selectedMajor={selectedMajor}
-        onCourseChange={handleCourseChange}
-      />
-      <button onClick={handleNavigate}>View Course</button>
+      <div className="app-container">
+        <h1 className="title-name">
+          Course<span className="highlight">Rank</span>
+        </h1>
+        <p className="subtitle-text">Choose a course to rank</p>
+        <MajorList onMajorChange={handleMajorChange} />
+        <CourseList
+          selectedMajor={selectedMajor}
+          onCourseChange={handleCourseChange}
+        />
+        <button className="search-button" onClick={handleNavigate}>
+          Search
+        </button>
+      </div>
     </div>
   );
 }
