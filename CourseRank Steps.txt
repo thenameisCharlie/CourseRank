@@ -13,8 +13,6 @@ Step 2
 - Create a user login - 
 - filter the comments by ratings - Complete
 - Make the dropdown list display in alphabetical order - Complete
-- Add the professors who teach the courses as a hyperlink (Once you search the class)
-- Add the number of users who have rated the difficulty of the course 
 
 
 Step 3

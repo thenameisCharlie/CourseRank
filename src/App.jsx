@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CourseList from "./components/CourseList";
 import MajorList from "./components/MajorList";
 import Navbar from "./components/Navbar";
-import "./App.css";
+import "./styles/App.css";
 
 function App() {
   const [selectedMajor, setSelectedMajor] = useState(null);
@@ -32,7 +32,9 @@ function App() {
   return (
     <div>
       <Navbar />
-      <h1 className="title-name">Course Rank</h1>
+      <h1 className="title-name">
+        Course<span className="highlight">Rank</span>
+      </h1>
       <MajorList onMajorChange={handleMajorChange} />
       <CourseList
         selectedMajor={selectedMajor}

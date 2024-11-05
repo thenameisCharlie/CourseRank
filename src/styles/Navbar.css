@@ -1,0 +1,64 @@
+@font-face {
+    font-family: 'LexendExa';
+    src: url('../assets/font/LexendExa-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0px;
+}
+
+.navbar {
+    background-color: #563D9A;
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.navbar-brand ul {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-brand ul li {
+    display: inline;
+}
+
+.headerBtn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 12px 16px;
+    font-family: 'LexendExa', sans-serif;
+}
+
+.headerBtn.signup {
+    background-color: #333333;
+    border-radius: 20px;
+    color: white;
+}
+
+.headerBtn:hover {
+    /* Slightly lighter dark color on hover */
+    background-color: #4f3992;
+    border-radius: 20px;
+}
+
+.headerBtn.signup:hover {
+    background-color: #444444;
+    /* Slightly lighter dark color on hover */
+}
+
+.profile-container {
+    /* move up profile picture */
+    margin-top: -8px;
+}
