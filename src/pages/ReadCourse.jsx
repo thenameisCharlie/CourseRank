@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { supabase } from "../client";
 import Navbar from "../components/Navbar";
+import "../styles/ReadCourse.css";
 
 const ReadCourse = () => {
   const { id } = useParams();
@@ -48,7 +49,7 @@ const ReadCourse = () => {
         .from("course_professors")
         .select("*")
         .eq("course_id", id);
-  
+
       if (data) {
         // Get professor details for each professor_id in the course_professors data
         const professorDetails = await Promise.all(
@@ -60,16 +61,14 @@ const ReadCourse = () => {
             return professorData ? professorData[0] : null;
           })
         );
-  
+
         // Set the professor data (filter out any null results)
         setProfessor(professorDetails.filter((prof) => prof !== null));
       }
     };
-  
+
     fetchProfessorData();
   }, [id]);
-  
-
 
   //get the average rating of the course of all users
   const getAverageRating = (ratings) => {
@@ -129,72 +128,57 @@ const ReadCourse = () => {
   return (
     <div>
       <Navbar />
-      <div className="course-information">
-        {course.map((course) => (
-          <div key={course.id}>
-            <h2>{course.title}</h2>
-            <p>{course.course}</p>
+      <div className="course-info">
+        <div className="professor-list">
+          <h3 className="professor-subtitle">
+            Professors who teach this course:{" "}
+          </h3>
+          {professor.map((professor) => (
+            <div className="professor-names" key={professor.id}>
+              <Link to={`/professor/${professor.professor_id}`}>
+                {professor.name}
+              </Link>
+            </div>
+          ))}
+          <div>
+            <h1 className="difficulty-title"> Level of Difficulty:</h1>
+            <h1 className="difficulty-number"> 4 </h1>
           </div>
-        ))}
-      </div>
-      <div className="professor-information">
-        <h3>Professors who teach this course: </h3>
-        {professor.map((professor) => (
-          <div key={professor.id}>
-            <Link to={`/professor/${professor.professor_id}`}>
-              {professor.name}
-            </Link>
+        </div>
+        <div className="rating-container">
+          <div className="average-rating">
+            <h1>
+              4.5 <span className="star">⭐</span>
+            </h1>
+            <p>Total of 28 ratings</p>
           </div>
-        ))}
-      </div>
-      <div className="course-ratings">
-        <h2>Course Ratings</h2>
-        <ul className="ratings-list">
-          {rating.length > 0 ? (
-            <>
-              <h3 className="course-rating">
-                Average rating: {getAverageRating(rating)}⭐
-              </h3>
-              <h3 className="course-difficulty">
-                Course difficulty: {getAverageDifficulty(rating)}
-              </h3>
-              <h4 className="course-comments">Comments</h4>
-              <select
-                id="sort-dropdown"
-                value={sortCriterion}
-                onChange={handleSort}
-              >
-                <option value="date">Recent</option>
-                <option value="highest">Sort by highest rating</option>
-                <option value="lowest">Sort by lowest rating</option>
-              </select>
-              <br />
-              {rating.map((rating) => (
-                <li key={rating.id}>
-                  Rating:{rating.rating_value}
-                  <br />
-                  {rating.comment}
-                  <br />
-                  {formatDate(rating.created_at)}
-                  <br />
-                  <br />
-                </li>
-              ))}
-            </>
-          ) : (
-            <li>No ratings yet</li>
-          )}
-        </ul>
-      </div>
-      <div>
-        <ul className="counted-ratings">
-          <li>5 ⭐: {countRatings(rating)["5"] || 0}</li>{" "}
-          {/* We use bracket notation to access a property that is numeric*/}
-          <li>4 ⭐: {countRatings(rating)["4"] || 0}</li>
-          <li>3 ⭐: {countRatings(rating)["3"] || 0}</li>
-          <li>2 ⭐: {countRatings(rating)["2"] || 0}</li>
-          <li>1 ⭐: {countRatings(rating)["1"] || 0}</li>
-        </ul>
+          {course.map((course) => (
+            <div key={course.id}>
+              <div className="course-title">
+                <h2>{course.title}</h2>
+                <p>Course ID: {course.course}</p>
+              </div>
+              <button className="rate-button">Rate</button>
+            </div>
+          ))}
+        </div>
+        <div class="rating-breakdown">
+          <span>5</span>
+          <div className="bar fill-green"></div>
+          <span>18</span>
+          <span>4</span>
+          <div className="bar fill-green"></div>
+          <span>3</span>
+          <span>3</span>
+          <div className="bar fill-yellow"></div>
+          <span>3</span>
+          <span>2</span>
+          <div className="bar fill-yellow"></div>
+          <span>0</span>
+          <span>1</span>
+          <div className="bar fill-red"></div>
+          <span>4</span>
+        </div>
       </div>
     </div>
   );

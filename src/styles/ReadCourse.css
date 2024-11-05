@@ -1,0 +1,143 @@
+@font-face {
+    font-family: 'LexendExa';
+    src: url('../assets/font/LexendExa-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.rating-container {
+    text-align: center;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'LexendExa';
+    justify-self: center;
+}
+
+.average-rating h1 {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.average-rating .star {
+    color: #FFD700;
+    font-family: 'LexendExa';
+}
+
+.course-title h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+    font-family: 'LexendExa';
+}
+
+.rate-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.rate-button:hover {
+    background-color: #0056b3;
+}
+
+.rating-breakdown {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: max-content 1fr max-content; 
+    gap : 20px 10px;
+    width: 100%;
+    :nth-child(3n+1)::after {
+            content: " ⭐";
+        }
+    font-family: 'LexendExa';
+}
+
+.rating-bar {
+    display: flex;
+    align-items: center;
+    font-family: 'LexendExa';
+}
+
+.rating-bar span {
+    font-size: 0.9em;
+}
+
+.bar {
+    flex: 0.8;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    font-family: 'LexendExa';
+}
+
+.fill-green {
+    height: 100%;
+    background-color: #6C9F6B;
+    border-radius: 4px;
+}
+
+.fill-yellow {
+    height: 100%;
+    background-color: #E1A400;
+    border-radius: 4px;
+}
+
+.fill-red {
+    height: 100%;
+    background-color: #D62323;
+    border-radius: 4px;
+}
+
+.professor-list {
+    margin-top: 20px;
+    text-align: left;
+    font-family: 'LexendExa';
+}
+
+a {
+    color: #0c1d2e;
+    text-decoration: underline;
+}
+
+.professor-names {
+    text-align: center;
+    font-size: 1em;
+    margin: 10px 0;
+    font-family: 'LexendExa';
+}
+
+.professor-subtitle {
+    font-size: 0.85em;
+    margin: 10px 0;
+    font-family: 'LexendExa';
+    text-align: center;
+}
+
+.difficulty-title {
+    margin-top: 1.9em;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.difficulty-number {
+    color:#D62323;
+    text-align: center;
+}
+
+.course-info {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 0.25fr min-content 0.25fr;
+    align-items: start;
+    justify-content: center;
+    gap: 4rem;
+    padding: 1rem;
+}
