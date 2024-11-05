@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'LexendExa';
+    src: url('../assets/font/LexendExa-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.signin-container {
+    margin-top: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 25vh;
+}
+
+.title-name {
+    font-family: 'LexendExa', sans-serif;
+    font-weight: bold;
+    font-size: 60px;
+    color: #333333;
+}
+
+.input-border {
+    min-width: 500px;
+    max-width: 500px;
+    height: 50px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid black;
+    border-radius: 50px;
+    box-sizing: border-box;
+    font-family: 'LexendExa', sans-serif;
+    background-color: #E4E4E4;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+    margin-bottom: 30px;
+}
+
+.button-border {
+    background-color: #0055FD;
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+    padding: 10px 40px;
+    font-family: 'LexendExa', sans-serif;
+    border-color: black;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #0044CC;
+}

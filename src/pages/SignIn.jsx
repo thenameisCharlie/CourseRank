@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../client";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import "../styles/SignIn.css";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -46,37 +48,43 @@ function SignIn() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSignIn}>
-        <div>
-          <input
-            id="email"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <input
-            id="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" disabled={loading}>
-          {loading ? "Signing in..." : "Sign in"}
-        </button>
-        <Link to="/signup">
-          <button type="submit">Sign up</button>
-        </Link>
-      </form>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-    </div>
+    <>
+      <Navbar />
+      <div className="signin-container">
+        <form onSubmit={handleSignIn}>
+          <div>
+            <h1 className="title-name">Sign in</h1>
+            <input
+              id="email"
+              className="input-border"
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <input
+              id="password"
+              className="input-border"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button className="button-border" type="submit" disabled={loading}>
+            {loading ? "Signing in..." : "Sign in"}
+          </button>
+          <Link to="/signup">
+            <button type="submit">Sign up</button>
+          </Link>
+        </form>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+      </div>
+    </>
   );
 }
 
