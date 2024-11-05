@@ -69,13 +69,12 @@ const ReadCourse = () => {
     fetchProfessorData();
   }, [id]);
   
-
-
   //get the average rating of the course of all users
   const getAverageRating = (ratings) => {
     if (ratings.length === 0) {
       return 0;
     }
+    
     // Sum of all ratings.
     const total = ratings.reduce((acc, curr) => acc + curr.rating_value, 0); //0 is the initial value of the accumulator. Acc is the accumulator and curr is the current value.
     return (total / ratings.length).toFixed(1); //toFixed(1) rounds the number to 1 decimal place.
