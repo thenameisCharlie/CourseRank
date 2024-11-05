@@ -5,14 +5,16 @@
     font-style: normal;
 }
 
+body {
+    margin: 0px;
+}
+
 .navbar {
     background-color: #563D9A;
-    padding: 10px 0;
+    padding: 30px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    margin: 0;
     box-sizing: border-box;
 }
 
@@ -32,10 +34,10 @@
     background: none;
     border: none;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    padding: 8px 16px;
+    padding: 12px 16px;
     font-family: 'LexendExa', sans-serif;
 }
 
@@ -48,9 +50,15 @@
 .headerBtn:hover {
     /* Slightly lighter dark color on hover */
     background-color: #4f3992;
+    border-radius: 20px;
 }
 
 .headerBtn.signup:hover {
     background-color: #444444;
     /* Slightly lighter dark color on hover */
+}
+
+.profile-container {
+    /* move up profile picture */
+    margin-top: -8px;
 }

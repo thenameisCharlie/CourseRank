@@ -50,23 +50,21 @@ const Navbar = () => {
           {userData ? (
             <>
               <Link to="/">
-                <button className="headerBtn">
+                <button className="headerBtn signout" onClick={handleSignout}>
                   {userData.user_metadata.display_name}
                 </button>
               </Link>
               <li>
                 <Link to="/">
-                  <button className="profile-button" onClick={handleSignout}>
-                    <div className="profile-container">
-                      <img
-                        src={`https://thfdcazcceydntzmyaip.supabase.co/storage/v1/object/public/profile-pictures/${userData.user_metadata.profile_image_url}`}
-                        alt="Profile"
-                        className="profile-picture"
-                        width={70}
-                        height={70}
-                      />
-                    </div>
-                  </button>
+                  <div className="profile-container">
+                    <img
+                      src={`https://thfdcazcceydntzmyaip.supabase.co/storage/v1/object/public/profile-pictures/${userData.user_metadata.profile_image_url}`}
+                      alt="Profile"
+                      className="profile-picture"
+                      width={65}
+                      height={65}
+                    />
+                  </div>
                 </Link>
               </li>
             </>
