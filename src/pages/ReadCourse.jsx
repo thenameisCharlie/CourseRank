@@ -7,6 +7,7 @@ const ReadCourse = () => {
   const { id } = useParams();
   const [course, setCourse] = useState([]);
   const [rating, setRating] = useState([]);
+  const [professor, setProfessor] = useState([]);
   const [sortRatings, setSortRatings] = useState([]); //sortReviews can be ["date", "highest", "lowest"
   const [sortCriterion, setSortCriterion] = useState("date"); //criteria can be ["rating", "difficulty", "date"
   // const [professor, setProfessor] = useState([]);
@@ -39,7 +40,36 @@ const ReadCourse = () => {
     fetchRatingData();
   }, [id]);
 
-  //fetch the professor data from the database (coming soon)
+  //fetch the professor data from the database using the course id
+  useEffect(() => {
+    const fetchProfessorData = async () => {
+      // Fetch course_professors
+      const { data } = await supabase
+        .from("course_professors")
+        .select("*")
+        .eq("course_id", id);
+  
+      if (data) {
+        // Get professor details for each professor_id in the course_professors data
+        const professorDetails = await Promise.all(
+          data.map(async (professor) => {
+            const { data: professorData } = await supabase
+              .from("professors")
+              .select("*")
+              .eq("id", professor.professor_id);
+            return professorData ? professorData[0] : null;
+          })
+        );
+  
+        // Set the professor data (filter out any null results)
+        setProfessor(professorDetails.filter((prof) => prof !== null));
+      }
+    };
+  
+    fetchProfessorData();
+  }, [id]);
+  
+
 
   //get the average rating of the course of all users
   const getAverageRating = (ratings) => {
@@ -104,6 +134,16 @@ const ReadCourse = () => {
           <div key={course.id}>
             <h2>{course.title}</h2>
             <p>{course.course}</p>
+          </div>
+        ))}
+      </div>
+      <div className="professor-information">
+        <h3>Professors who teach this course: </h3>
+        {professor.map((professor) => (
+          <div key={professor.id}>
+            <Link to={`/professor/${professor.professor_id}`}>
+              {professor.name}
+            </Link>
           </div>
         ))}
       </div>
