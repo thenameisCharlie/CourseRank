@@ -107,7 +107,7 @@ const ReadCourse = () => {
     return (total / ratings.length).toFixed(0);
   };
 
-  //count the number of ratings for each rating value
+  //count the number of ratings for each rating value 
   const countRatings = (ratings) => {
     return ratings.reduce((acc, curr) => {
       acc[curr.rating_value] = (acc[curr.rating_value] || 0) + 1; // if the rating value is not in the accumulator, add it to the accumulator and set it to 1. If it is in the accumulator, increment it by 1.
@@ -165,7 +165,7 @@ const ReadCourse = () => {
         <div className="rating-container">
           <div className="average-rating">
             <h1>
-              4.5 <span className="star">⭐</span>
+              {getAverageRating(rating)} <span className="star">⭐</span>
             </h1>
             <p>Total of {getTotalRatings(rating)} ratings</p>
           </div>
