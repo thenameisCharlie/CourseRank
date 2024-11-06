@@ -201,3 +201,13 @@ div#outer-one {
     border-bottom-right-radius: 5px;
   }
 }
+
+.comments-container{
+  font-family: "LexendExa"; 
+}
+
+.comments-title {
+    margin-left: 5rem;
+}
+
+
