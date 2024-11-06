@@ -6,6 +6,7 @@ import { Router, Route, BrowserRouter, Routes } from "react-router-dom";
 import ReadCourse from "./pages/ReadCourse.jsx";
 import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
+import RateCourse from "./pages/RateCourse.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/view/:id" element={<ReadCourse />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/rate/:id" element={<RateCourse />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
     </BrowserRouter>

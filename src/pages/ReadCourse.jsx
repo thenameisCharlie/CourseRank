@@ -171,7 +171,9 @@ const ReadCourse = () => {
                 <h2>{course.title}</h2>
                 <p>Course ID: {course.course}</p>
               </div>
-              <button className="rate-button">Rate</button>
+              <Link to={`/rate/${course.id}`}>
+                <button className="rate-button">Rate</button>
+              </Link>
             </div>
           ))}
         </div>
