@@ -44,6 +44,10 @@ const RateCourse = () => {
         user_id: userData.id,
       },
     ]);
+    // To prevent the user from submitting if they dont have an account - and if they have already submitted a post for the course by checking their user id
+    if (userData === null) {
+      alert("You must be logged in to rate a course");
+    }
 
     if (error) {
       console.error("Error uploading rating:", error);

@@ -62,9 +62,11 @@
 }
 
 .review-input {
+    height: 5rem;
+    width: 20rem;
     padding: 12px 20px;
     border: 2px solid #cac8c8;
     border-radius: 4px;
     font-size: 16px;
-    resize: none; 
+    resize: none;
 }
