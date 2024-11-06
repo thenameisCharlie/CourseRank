@@ -79,8 +79,12 @@ const ReadCourse = () => {
 
     fetchProfessorData();
   }, [id]);
-  
 
+  //get total number of objects in the ratings array
+  const getTotalRatings = (ratings) => {
+    return ratings.length;
+  };  
+  
 
   //get the average rating of the course of all users
   const getAverageRating = (ratings) => {
@@ -163,7 +167,7 @@ const ReadCourse = () => {
             <h1>
               4.5 <span className="star">⭐</span>
             </h1>
-            <p>Total of 28 ratings</p>
+            <p>Total of {getTotalRatings(rating)} ratings</p>
           </div>
           {course.map((course) => (
             <div key={course.id}>
