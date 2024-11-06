@@ -37,7 +37,10 @@ const RateCourse = () => {
     // To prevent the user from submitting if they dont have an account
     if (!userData) {
       alert("You must be logged in to rate a course");
+      return;
     }
+
+    // TODO: check if they have already submitted a post for the course by checking their user id
 
     const { data, error } = await supabase.from("course_ratings").insert([
       {
@@ -49,26 +52,10 @@ const RateCourse = () => {
       },
     ]);
 
-    // if they have already submitted a post for the course by checking their user id
-    const { data_user, error_user } = await supabase
-      .from("course_ratings")
-      .select("*")
-      .eq("user_id", userData.id)
-      .eq("course_id", id);
-
-    // if they have, then do an alert and dont submit the rating
-    if (!data_user) {
-      alert("You have already rated this course");
-      return;
-    }
-
-    if (error_user) {
-      console.error("Error fetching user:", error_user.message);
-    }
     if (error) {
       console.error("Error uploading rating:", error);
     } else {
-      console.log("Rating uploaded successfully:", data);
+      console.log("Rating uploaded successfully!", data);
       window.location.href = `/view/${id}`;
     }
   };

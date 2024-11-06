@@ -77,8 +77,6 @@ const ReadCourse = () => {
     ).style.gridTemplateColumns = `${oneStarRatings}fr 1fr`;
   }, [rating]);
 
-  console.log(rating);
-
   //fetch the professor data from the database using the course id
   useEffect(() => {
     const fetchProfessorData = async () => {
