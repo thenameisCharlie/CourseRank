@@ -29,12 +29,16 @@ const RateCourse = () => {
     };
 
     fetchUser();
-  }, []);
-
-  console.log(id);
+  }, [userData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // To prevent the user from submitting if they dont have an account
+    if (!userData) {
+      alert("You must be logged in to rate a course");
+    }
+
     const { data, error } = await supabase.from("course_ratings").insert([
       {
         comment: feedback,
@@ -44,11 +48,23 @@ const RateCourse = () => {
         user_id: userData.id,
       },
     ]);
-    // To prevent the user from submitting if they dont have an account - and if they have already submitted a post for the course by checking their user id
-    if (userData === null) {
-      alert("You must be logged in to rate a course");
+
+    // if they have already submitted a post for the course by checking their user id
+    const { data_user, error_user } = await supabase
+      .from("course_ratings")
+      .select("*")
+      .eq("user_id", userData.id)
+      .eq("course_id", id);
+
+    // if they have, then do an alert and dont submit the rating
+    if (!data_user) {
+      alert("You have already rated this course");
+      return;
     }
 
+    if (error_user) {
+      console.error("Error fetching user:", error_user.message);
+    }
     if (error) {
       console.error("Error uploading rating:", error);
     } else {
