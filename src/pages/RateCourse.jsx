@@ -1,22 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { supabase } from "../client";
 import Navbar from "../components/Navbar";
+import { Navigate, useParams } from "react-router-dom";
+import RatingReview from "../components/RatingReview";
+import "../styles/RateCourse.css";
 
 const RateCourse = () => {
-  const [courseId, setCourseId] = useState("");
   const [rating, setRating] = useState(0);
+  const [difficulty, setDifficulty] = useState(0);
   const [feedback, setFeedback] = useState("");
+  const [userData, setUserData] = useState(null);
+  const { id } = useParams(); // course id
+
+  const isFormComplete = rating !== 0 && difficulty !== 0;
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
+      if (error) {
+        console.error("Error fetching user:", error.message);
+        handleSignout();
+      } else if (user) {
+        setUserData(user);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  console.log(id);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data, error } = await supabase
-      .from("course_rating")
-      .insert([{ course_id: courseId, rating, feedback }]);
+    const { data, error } = await supabase.from("course_ratings").insert([
+      {
+        comment: feedback,
+        course_id: id,
+        rating_value: rating,
+        difficulty,
+        user_id: userData.id,
+      },
+    ]);
 
     if (error) {
       console.error("Error uploading rating:", error);
     } else {
       console.log("Rating uploaded successfully:", data);
+      window.location.href = `/view/${id}`;
     }
   };
 
@@ -24,36 +57,32 @@ const RateCourse = () => {
     <>
       <Navbar />
       <div>
-        <h1>Rate a Course</h1>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Course ID:</label>
-            <input
-              type="text"
-              value={courseId}
-              onChange={(e) => setCourseId(e.target.value)}
-              required
-            />
+          <div className="rate-course-form">
+            <label>Rate this Course</label>
+            <RatingReview rating={rating} setRating={setRating} />
           </div>
-          <div>
-            <label>Rating:</label>
-            <input
-              type="number"
-              value={rating}
-              onChange={(e) => setRating(Number(e.target.value))}
-              min="1"
-              max="5"
-              required
-            />
+          <div className="rate-difficulty-form">
+            <label>Course Difficulty</label>
+            <RatingReview rating={difficulty} setRating={setDifficulty} />
           </div>
-          <div>
-            <label>Feedback:</label>
+          <div className="review-form">
+            <label>Write your Review</label>
             <textarea
               value={feedback}
+              className="review-input"
+              placeholder="What information can you provide other students regarding this class?"
               onChange={(e) => setFeedback(e.target.value)}
+              required
             />
           </div>
-          <button type="submit">Submit Rating</button>
+          <button
+            className="submit-button"
+            type="submit"
+            disabled={!isFormComplete}
+          >
+            Submit
+          </button>
         </form>
       </div>
     </>
