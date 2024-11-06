@@ -7,7 +7,7 @@ import "../styles/ReadCourse.css";
 const ReadCourse = () => {
   const { id } = useParams();
   const [course, setCourse] = useState([]);
-  const [rating, setRating] = useState([]);
+  const [rating, setRating] = useState([]); 
   const [professor, setProfessor] = useState([]);
   const [sortRatings, setSortRatings] = useState([]); //sortReviews can be ["date", "highest", "lowest"
   const [sortCriterion, setSortCriterion] = useState("date"); //criteria can be ["rating", "difficulty", "date"
@@ -48,6 +48,8 @@ const ReadCourse = () => {
 
     fetchRatingData();
   }, [id]);
+
+  console.log(rating);
 
   //fetch the professor data from the database using the course id
   useEffect(() => {
@@ -93,11 +95,11 @@ const ReadCourse = () => {
 
   //get the difficulty average rating from all users
   const getAverageDifficulty = (ratings) => {
-    if (rating === 0) {
+    if (ratings === 0) {
       return 0;
     }
 
-    const total = ratings.reduce((acc, curr) => acc + curr.difficulty, 0);
+    const total = ratings.reduce((acc, curr) => acc + curr.difficulty, 0); //reduce function takes in an accumulator and a current value. The current value is added to the accumulator.
     return (total / ratings.length).toFixed(0);
   };
 
@@ -153,7 +155,7 @@ const ReadCourse = () => {
           ))}
           <div>
             <h1 className="difficulty-title"> Level of Difficulty:</h1>
-            <h1 className="difficulty-number"> 4 </h1>
+            <h1 className="difficulty-number"> {rating.length > 0 ? getAverageDifficulty(rating) : "N/A"} </h1>
           </div>
         </div>
         <div className="rating-container">
