@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { supabase } from "../client";
 import Navbar from "../components/Navbar";
+import CommentCard from "../components/CommentCard";
 import "../styles/ReadCourse.css";
 
 const ReadCourse = () => {
@@ -75,6 +76,8 @@ const ReadCourse = () => {
       "outer-one"
     ).style.gridTemplateColumns = `${oneStarRatings}fr 1fr`;
   }, [rating]);
+
+  console.log(rating);
 
   //fetch the professor data from the database using the course id
   useEffect(() => {
@@ -240,6 +243,21 @@ const ReadCourse = () => {
           </div>
           <span>{oneStarRatings}</span>
         </div>
+      </div>
+      <div className="comments-container">
+        <h2 className="comments-title">Comments:</h2>
+        {rating.map((r) => (
+          <div key={r.id}>
+            <div>
+              <CommentCard
+                rate={r.rating_value}
+                difficulty={r.difficulty}
+                text={r.comment}
+                date={r.created_at.slice(0, 10)}
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
