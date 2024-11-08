@@ -40,7 +40,21 @@ const RateCourse = () => {
       return;
     }
 
-    // TODO: check if they have already submitted a post for the course by checking their user id
+    // Check if they have already submitted a post for the course by checking their user id
+    // if they have - then alert them and return
+    const { data: existingRating, error: existingRatingError } = await supabase
+      .from("course_ratings")
+      .select("*")
+      .eq("course_id", id)
+      .eq("user_id", userData.id);
+
+    if (existingRatingError) {
+      console.error("Error deleting existing rating:", existingRatingError);
+    } else if (existingRating.length > 0) {
+      console.log("Existing rating found:", existingRating);
+      alert("You have already rated this course.");
+      return;
+    }
 
     const { data, error } = await supabase.from("course_ratings").insert([
       {
