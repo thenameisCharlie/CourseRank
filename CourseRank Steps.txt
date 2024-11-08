@@ -22,9 +22,9 @@ Step 3
 - Search classes by a subject by adding a subjects table in Supabase (such as: Math, Literature, Science) - Maybe 
 
 Step 4
-- Create a rate page where you can rate courses or professors
-- Add professors so they can be rated individually include the class they teach. 
-- Add the professors and the many-to-many relationship with the courses in Supabase
+- Create a rate page where you can rate courses or professors - Complete
+- Add professors so they can be rated individually include the class they teach - Complete
+- Add the professors and the many-to-many relationship with the courses in Supabase - Complete
 
 
 
